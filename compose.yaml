@@ -1,0 +1,49 @@
+version: "3"
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/usr/src/app
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: dogshealth
+      MYSQL_USER: pecobitaro
+      MYSQL_PASSWORD: password
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # playwright:
+  #   image: mcr.microsoft.com/playwright:focal
+  #   working_dir: /tests
+  #   volumes:
+  #     - ./next-app:/tests
+  #     - ./tests:/tests
+  #   command: ["npx", "playwright", "test"]
+  #   depends_on:
+  #     - next
+
+volumes:
+  mysql_data:
