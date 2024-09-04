@@ -10,7 +10,7 @@ import Sidebar from '@/components/public/Sidebar';
 import Footer from '@/components/public/Footer';
 import Dog from '@/types/dogData';
 import VaccineList from '@/components/vaccinePage/VaccineList';
-import VaccineData from '@/types/vaccineData';
+import VaccineData from '@/types/VaccineData';
 
 const VaccinePage = () => {
     const params = useParams();

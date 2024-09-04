@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import VaccineData from '@/types/vaccineData';
+import VaccineData from '@/types/VaccineData';
 
 interface VaccineListProps {
     data: VaccineData[];

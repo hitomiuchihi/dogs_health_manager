@@ -1,4 +1,4 @@
-import VaccineData from "@/types/vaccineData";
+import VaccineData from "@/types/VaccineData";
 
 const vaccineData: VaccineData[] = [
     {

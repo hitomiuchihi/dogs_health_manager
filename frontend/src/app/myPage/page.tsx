@@ -6,6 +6,7 @@ import Footer from '@/components/public/Footer';
 import Sidebar from '@/components/public/Sidebar';
 import NewHealthRecordForm from '@/components/myPage/NewHealthRecordForm';
 import AddDogForm from '@/components/myPage/AddDogForm';
+import AddVaccineRecordForm from '@/components/myPage/NewVaccineRecordForm';
 import Dog from '@/types/dogData';
 import dogs from '@/dummyData/dogsDummyData'
 
@@ -19,6 +20,11 @@ export default function MyPage() {
     const handleAddDog = (formData: FormData) => {
         // ここでフォームデータを処理します（例: APIへ送信）
         console.log('フォームデータ:', formData);
+    };
+
+    const handleAddVaccineRecord = (formData: any) => {
+        console.log('ワクチン接種記録データ:', formData);
+        // ここでワクチン接種記録データをサーバーに送信する処理を行う
     };
 
     return (
@@ -35,6 +41,7 @@ export default function MyPage() {
                     <p>ワクチン記録を追加する</p>
                     <p>ワクチン記録を編集、削除する</p>
                     <NewHealthRecordForm dogs={dogs} onSubmit={handleFormSubmit} />
+                    <AddVaccineRecordForm dogs={dogs} onSubmit={handleAddVaccineRecord} />
                     <AddDogForm onSubmit={handleAddDog} />
                 </main>
             </div>
