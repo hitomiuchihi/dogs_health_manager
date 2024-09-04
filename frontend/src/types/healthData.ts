@@ -8,6 +8,7 @@ interface HealthData{
     stool: Stool;
     weight: number;
     date: string; // ISO 8601形式
+    memo?: string
 }
 
 export default HealthData;

@@ -5,9 +5,31 @@ import React from 'react';
 interface HealthListProps {
     data: any[];
     onDetails: (data: any) => void;
+    totalItems: number;
+    itemsPerPage: number;
+    currentPage: number;
+    onPageChange: (pageNumber: number) => void;
 }
 
-const HealthList: React.FC<HealthListProps> = ({ data, onDetails }) => {
+const HealthList: React.FC<HealthListProps> = ({ data, onDetails, totalItems, itemsPerPage, currentPage, onPageChange }) => {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+    const renderPageNumbers = () => {
+        const pageNumbers = [];
+        for (let i = 1; i <= totalPages; i++) {
+            pageNumbers.push(
+                <button
+                    key={i}
+                    className={`mx-1 px-2 py-1 rounded ${i === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                    onClick={() => onPageChange(i)}
+                >
+                    {i}
+                </button>
+            );
+        }
+        return pageNumbers;
+    };
+
     return (
         <div>
             <h2 className="text-2xl font-semibold mb-4">記録一覧</h2>
@@ -24,8 +46,12 @@ const HealthList: React.FC<HealthListProps> = ({ data, onDetails }) => {
                     </li>
                 ))}
             </ul>
+            <div className="mt-4">
+                {renderPageNumbers()}
+            </div>
         </div>
     );
 }
 
 export default HealthList;
+
