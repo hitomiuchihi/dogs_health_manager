@@ -11,6 +11,7 @@ services:
       - /usr/src/app/node_modules
     depends_on:
       - backend
+    command: npm run dev
 
   backend:
     build:
