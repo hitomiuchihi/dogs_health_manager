@@ -1,5 +1,5 @@
-import PECO from '../images/PECO.png';
-import BITARO from '../images/BITARO.png'
+import PECO from '../public/images/PECO.png';
+import BITARO from '../public/images/BITARO.png'
 import Dog from '../types/dogData'
 
 const dogs: Dog[] = [
