@@ -4,7 +4,7 @@ interface Dog {
     id: number;
     name: string;
     birthday: string;
-    profileImage: StaticImageData;
+    profileImage: StaticImageData|File;
 }
 
 export default Dog;
