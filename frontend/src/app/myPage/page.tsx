@@ -4,19 +4,19 @@ import React, { useState } from 'react';
 import Header from '@/components/public/Header';
 import Footer from '@/components/public/Footer';
 import Sidebar from '@/components/public/Sidebar';
-import NewHealthRecordForm from '@/components/myPage/NewHealthRecordForm';
-import AddDogForm from '@/components/myPage/AddDogForm';
-import AddVaccineRecordForm from '@/components/myPage/NewVaccineRecordForm';
+import ToggleAddDog from '@/components/myPage/addDog/ToggleAddDog';
+import ToggleAddNewHealthRecord from '@/components/myPage/addNewHealthRecord/ToggleAddNewHealthRecord';
+import ToggleAddNewVaccineRecord from '@/components/myPage/addNewVaccineRecord/ToggleAddNewVaccine';
 import DogInfo from '@/components/myPage/dogsData/DogInfo';
 import Modal from '@/components/myPage/dogsData/Modal';
 import DogEditForm from '@/components/myPage/dogsData/DogEditForm';
 import Dog from '@/types/dogData';
 import dogs from '@/dummyData/dogsDummyData'
 
-
 export default function MyPage() {
     // 愛犬情報の状態管理
     const [editingDog, setEditingDog] = useState<Dog | null>(null);
+    const [selectedDogId, setSelectedDogId] = useState<number | null>(null);
 
     const handleAddHealthRecord = (data: any) => {
         console.log('フォーム送信データ:', data);
@@ -50,6 +50,7 @@ export default function MyPage() {
         // ここで更新されたデータをサーバーに送信する処理を行う
     };
 
+    
     return (
         <div className="flex h-screen flex-col">
             <Header />
@@ -80,10 +81,24 @@ export default function MyPage() {
                         )}
                     </Modal>
 
-                    <h3 className="text-2xl font-semibold mb-4">新しい情報を追加する</h3>
-                    <NewHealthRecordForm dogs={dogs} onSubmit={handleAddHealthRecord} />
-                    <AddVaccineRecordForm dogs={dogs} onSubmit={handleAddVaccineRecord} />
-                    <AddDogForm onSubmit={handleAddDog} />
+                    {/* <h3 className="text-2xl font-semibold mb-4">新しく愛犬情報を追加する</h3>
+                    <AddDogForm onSubmit={handleAddDog} /> */}
+                    <ToggleAddDog />
+
+                    {/* <h3 className="text-2xl font-semibold mb-4">新しく健康記録を追加する</h3>
+                    <NewHealthRecordForm dogs={dogs} onSubmit={handleAddHealthRecord} /> */}
+                    <ToggleAddNewHealthRecord 
+                        dogs={dogs}
+                        handleAddHealthRecord={handleAddHealthRecord}
+                    />
+
+                    {/* <h3 className="text-2xl font-semibold mb-4">新しくワクチン記録を追加する</h3>
+                    <AddVaccineRecordForm dogs={dogs} onSubmit={handleAddVaccineRecord} /> */}
+                    <ToggleAddNewVaccineRecord 
+                        dogs={dogs}
+                        handleAddVaccineRecord={handleAddVaccineRecord}
+                    />
+                    
                 </main>
             </div>
             <Footer />
